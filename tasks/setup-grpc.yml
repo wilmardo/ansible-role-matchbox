@@ -18,6 +18,7 @@
     chdir: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/tls"
     creates:
       - ca.crt
+      - ca.key
       - server.crt
       - server.key
       - client.crt
