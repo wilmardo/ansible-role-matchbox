@@ -32,6 +32,7 @@
   file:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/matchbox"
     dest: "{{ matchbox_executable_dir }}"
+  become: yes
 
 - name: Copy Matchbox systemd file
   copy:
@@ -39,11 +40,13 @@
     dest: /etc/systemd/system/matchbox.service
     owner: root
     group: root
+  become: yes
 
 - name: Create systemd override directory
   file:
     path: /etc/systemd/system/matchbox.service.d
     state: directory
+  become: yes
 
 - name: Create systemd override.conf
   blockinfile:
@@ -52,16 +55,19 @@
     marker: "<!-- {mark} ANSIBLE MANAGED CONFIG -->"
     insertafter: EOF
     create: yes
+  become: yes
 
 - name: Set ExexStart in systemd override.conf
   lineinfile:
     dest: /etc/systemd/system/matchbox.service.d/override.conf
     regexp: "^ExecStart="
     line: "ExecStart={{ matchbox_executable_dir }}"
+  become: yes
 
 - name: Enable Matchbox and reload daemon
   systemd:
     name: matchbox
     enabled: yes
     daemon_reload: yes
+  become: yes
   notify: matchbox restart
