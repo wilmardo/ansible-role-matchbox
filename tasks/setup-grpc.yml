@@ -42,7 +42,6 @@
   file:
     dest: "{{ matchbox_client_cert_dir }}"
     state: directory
-  become: yes
 
 - name: Copy client certs to to client_cert_dir
   copy:
