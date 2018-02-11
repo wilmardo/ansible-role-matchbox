@@ -20,6 +20,7 @@
   shell: "gpg --verify matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz.asc matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz"
   args:
     chdir: "{{ matchbox_download_dir }}"
+  changed_when: false
 
 - name: Unpack release tarball
   unarchive:
@@ -36,6 +37,7 @@
   file:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/contrib/systemd/matchbox.service"
     dest: /etc/systemd/system/matchbox.service
+    state: link
 
 - name: Create systemd override.conf
   blockinfile:
