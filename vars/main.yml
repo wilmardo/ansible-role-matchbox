@@ -6,3 +6,7 @@ matchbox_src: "matchbox-v{{ matchbox_version }}-linux-amd64"
 
 # Location to symlink the binary to
 matchbox_executable_dir: /usr/local/bin
+
+# Prerequisites for matchbox install
+matchbox_prerequisites:
+  - openssl

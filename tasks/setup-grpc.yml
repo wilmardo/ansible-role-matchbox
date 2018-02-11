@@ -1,7 +1,7 @@
 ---
 - name: Set Rpc adress in systemd override.conf
   lineinfile:
-    dest: "{{ matchbox_download_dir }}/{{ matchbox_src }}/contrib/systemd/matchbox.service"
+    dest: /etc/systemd/system/matchbox.service.d/override.conf
     regexp: '^Environment="MATCHBOX_RPC_ADDRESS='
     line: 'Environment="MATCHBOX_RPC_ADDRESS=0.0.0.0:8081"'
 
