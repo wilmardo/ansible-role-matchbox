@@ -33,11 +33,12 @@
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/matchbox"
     dest: "{{ matchbox_executable_dir }}"
 
-- name: Symlink Matchbox systemd file
-  file:
+- name: Copy Matchbox systemd file
+  copy:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/contrib/systemd/matchbox.service"
     dest: /etc/systemd/system/matchbox.service
-    state: link
+    owner: root
+    group: root
 
 - name: Create systemd override directory
   file:
