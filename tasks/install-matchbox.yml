@@ -17,10 +17,12 @@
 
 - name: Download CoreOS App Signing key (https://coreos.com/security/app-signing-key/)
   shell: gpg --keyserver pgp.mit.edu --recv-key 18AD5014C99EF7E3BA5F6CE950BDD3E0FC8A365E
+  changed_when: false
 
 - name: Verify Matchbox
   shell: "gpg --verify matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz.asc matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz"
-  chdir: "{{ matchbox_download_location }}"
+  args:
+    chdir: "{{ matchbox_download_location }}"
 
 - name: Unpack release tarball
   unarchive:
