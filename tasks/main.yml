@@ -3,7 +3,7 @@
 
 #- include: setup-epel.yml
 
-#- include: setup-prerequisite.yml
+- include: setup-prerequisite.yml
 
 - import_tasks: install-matchbox.yml
 
