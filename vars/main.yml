@@ -1,3 +1,8 @@
 ---
-matchbox_download_url: "https://github.com/coreos/matchbox/releases/download/v{{ matchbox_version }}/matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz"
+# The Matchbox download url
+matchbox_url: "https://github.com/coreos/matchbox/releases/download/v{{ matchbox_version }}/matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz"
+# The name of the untarred Matchbox directory
+matchbox_src: "matchbox-v{{ matchbox_version }}-linux-amd64"
+
+# Location to symlink the binary to
 matchbox_executable_location: /usr/local/bin

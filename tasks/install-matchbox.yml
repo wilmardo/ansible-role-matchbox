@@ -4,16 +4,16 @@
     path: "{{ item }}"
     state: directory
   with_items:
-    - "{{ matchbox_download_location }}"
-    - "{{ matchbox_install_location }}"
+    - "{{ matchbox_download_dir }}"
+    - "{{ matchbox_install_dir }}"
 
 - name: Download Matchbox and PGP file
   get_url:
     url: "{{ item }}"
-    dest: "{{ matchbox_download_location }}"
+    dest: "{{ matchbox_download_dir }}"
   with_items:
-    - "{{ matchbox_download_url }}"
-    - "{{ matchbox_download_url + '.asc' }}"
+    - "{{ matchbox_url }}"
+    - "{{ matchbox_url + '.asc' }}"
 
 - name: Download CoreOS App Signing key (https://coreos.com/security/app-signing-key/)
   shell: gpg --keyserver pgp.mit.edu --recv-key 18AD5014C99EF7E3BA5F6CE950BDD3E0FC8A365E
@@ -22,18 +22,18 @@
 - name: Verify Matchbox
   shell: "gpg --verify matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz.asc matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz"
   args:
-    chdir: "{{ matchbox_download_location }}"
+    chdir: "{{ matchbox_download_dir }}"
 
 - name: Unpack release tarball
   unarchive:
-    src: "{{ matchbox_download_location }}"
-    dest: "{{ matchbox_install_location }}"
+    src: "{{ matchbox_download_dir }}/matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz"
+    dest: "{{ matchbox_download_dir }}"
     remote_src: yes
 
 - name: Symlink Matchbox executable
   file:
-    src: "{{ matchbox_install_location }}/matchbox"
-    dest: "{{ matchbox_executable_location }}"
+    src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/matchbox"
+    dest: "{{ matchbox_executable_dir }}"
 
 - name: Enable Matchbox and reload daemon
   systemd:
