@@ -34,7 +34,7 @@
 
 - name: Symlink Matchbox systemd file
   file:
-    src: "{{ matchbox_install_location }}/contrib/systemd/matchbox.service"
+    src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/contrib/systemd/matchbox.service"
     dest: /etc/systemd/system/matchbox.service
 
 - name:
@@ -46,7 +46,7 @@
 
 - name: Set ExexStart in systemd override.conf
   lineinfile:
-    dest: "{{ matchbox_install_location }}/contrib/systemd/matchbox.service"
+    dest: /etc/systemd/system/matchbox.service.d/override.conf
     regexp: "^ExecStart="
     line: "ExecStart={{ matchbox_executable_location }}"
 
