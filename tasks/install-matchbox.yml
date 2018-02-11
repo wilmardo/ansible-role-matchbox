@@ -39,6 +39,11 @@
     dest: /etc/systemd/system/matchbox.service
     state: link
 
+- name: Create systemd override directory
+  file:
+    path: /etc/systemd/system/matchbox.service.d
+    state: directory
+
 - name: Create systemd override.conf
   blockinfile:
     dest: /etc/systemd/system/matchbox.service.d/override.conf
