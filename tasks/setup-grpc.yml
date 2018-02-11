@@ -16,13 +16,7 @@
   shell: ./cert-gen
   args:
     chdir: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/tls"
-    creates:
-      - ca.crt
-      - ca.key
-      - server.crt
-      - server.key
-      - client.crt
-      - client.key
+    creates: ca.crt
   environment:
     SAN: "DNS.1:{{ matchbox_hostname }},IP.1:{{ ansible_default_ipv4.address }}"
   when: matchbox_selfsigned_certs
@@ -40,6 +34,7 @@
   copy:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/tls/{{ item }}"
     dest: /etc/matchbox
+    remote_src: yes
   with_items:
     - ca.crt
     - server.crt
