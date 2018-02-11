@@ -11,7 +11,7 @@
   shell: gpg --keyserver pgp.mit.edu --recv-key 18AD5014C99EF7E3BA5F6CE950BDD3E0FC8A365E
 
 - name: Verify Matchbox
-  shell: "gpg --verify matchbox-v{{ matchbox-version }}-linux-amd64.tar.gz.asc matchbox-v{{ matchbox-version }}-linux-amd64.tar.gz"
+  shell: "gpg --verify matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz.asc matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz"
 
 - name: Unpack release tarball
   unarchive:
