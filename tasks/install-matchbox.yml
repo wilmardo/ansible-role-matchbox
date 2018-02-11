@@ -12,6 +12,7 @@
 
 - name: Verify Matchbox
   shell: "gpg --verify matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz.asc matchbox-v{{ matchbox_version }}-linux-amd64.tar.gz"
+  chdir: "{{ matchbox_download_location }}"
 
 - name: Unpack release tarball
   unarchive:
