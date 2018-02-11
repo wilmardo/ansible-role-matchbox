@@ -15,7 +15,7 @@ matchbox_selfsigned_certs: yes
 # Hostname for generated certs
 matchbox_hostname: matchbox.example.com
 # Directory to store generated client certs (client.crt, client.key, ca.crt)
-matchbox_client_cert_dir: "{{ ansible_env.HOME }}/.matchbox/"
+matchbox_client_cert_dir: "{{ ansible_env.HOME }}/.matchbox"
 
 # Enable to setup to serve CoreOS PXE boot
 matchbox_enable_coreos_pxe: no
