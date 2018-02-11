@@ -3,11 +3,11 @@
 
 - import_tasks: install-matchbox.yml
 
-- import_tasks: setup-grpc.yml
-  when: matchbox_enable_grpc
-
 - import_tasks: setup-prerequisite.yml
   when: matchbox_enable_coreos_pxe
+
+- import_tasks: setup-grpc.yml
+  when: matchbox_enable_grpc
 
 - import_tasks: add-coreos.yml
   when: matchbox_enable_coreos_pxe
