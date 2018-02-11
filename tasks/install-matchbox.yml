@@ -56,7 +56,7 @@
   lineinfile:
     dest: /etc/systemd/system/matchbox.service.d/override.conf
     regexp: "^ExecStart="
-    line: "ExecStart={{ matchbox_executable_location }}"
+    line: "ExecStart={{ matchbox_executable_dir }}"
 
 - name: Enable Matchbox and reload daemon
   systemd:
