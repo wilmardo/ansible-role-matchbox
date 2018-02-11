@@ -1,7 +1,7 @@
 ---
 matchbox_version: 0.7.0
 
-matchbox_download_location: "{{ ansible_env.HOME }}"
+matchbox_download_location: "{{ ansible_env.HOME }}/matchbox"
 matchbox_install_location: /opt/matchbox
 
 matchbox_enable_grpc: yes
