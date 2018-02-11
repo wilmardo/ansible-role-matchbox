@@ -30,7 +30,7 @@
     - "{{ matchbox_client_cert_dir }}"
   become: yes
 
-- name: Move TLS credentials to /etc/matchbox
+- name: Copy TLS credentials to /etc/matchbox
   copy:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/tls/{{ item }}"
     dest: /etc/matchbox
@@ -41,10 +41,11 @@
     - server.key
   become: yes
 
-- name: Move client certs to to client_cert_dir
+- name: Copy client certs to to client_cert_dir
   copy:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/tls/{{ item }}"
     dest: "{{ matchbox_client_cert_dir }}"
+    remote_src: yes
   with_items:
     - ca.crt
     - client.crt
