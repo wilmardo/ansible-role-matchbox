@@ -1,13 +1,10 @@
 ---
-
-matchbox_download_location: "{{ ansible_env.HOME }}/matchbox"
-
-matchbox_enable_grpc: yes
-matchbox_hostname: matchbox.example.com
-matchbox_client_cert_location: "{{ ansible_env.HOME }}/.matchbox/"
+# The version of Matchbox to be installed
+matchbox_version: 0.7.0
 
 # The directory where the downloaded files will be placed and extracted.
 matchbox_download_dir: "{{ ansible_env.HOME }}/matchbox"
 
-# The version of Matchbox to be installed
-matchbox_version: 0.7.0
+matchbox_enable_grpc: yes
+matchbox_hostname: matchbox.example.com
+matchbox_client_cert_location: "{{ ansible_env.HOME }}/.matchbox/"

@@ -1,11 +1,8 @@
 ---
 - name: Ensure download and install dir exist
   file:
-    path: "{{ item }}"
+    path: "{{ matchbox_download_dir }}"
     state: directory
-  with_items:
-    - "{{ matchbox_download_dir }}"
-    - "{{ matchbox_install_dir }}"
 
 - name: Download Matchbox and PGP file
   get_url:
