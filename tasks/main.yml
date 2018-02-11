@@ -7,4 +7,5 @@
 
 - import_tasks: install-matchbox.yml
 
-- import_tasks: install-matchbox.yml
+- import_tasks: setup-grpc.yml
+  when: matchbox_enable_grpc

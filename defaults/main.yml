@@ -5,6 +5,17 @@ matchbox_version: 0.7.0
 # The directory where the downloaded files will be placed and extracted.
 matchbox_download_dir: "{{ ansible_env.HOME }}/matchbox"
 
+# Could be used to override systemd standards see (docs)[https://coreos.com/matchbox/docs/latest/config.html]
+matchbox_systemd_override: |
+
+# If enabled matchbox configures gRPC
 matchbox_enable_grpc: yes
+
+# If true selfsigned certs are created for gRPC
+matchbox_selfsigned_certs: yes
+
+# Hostname for generated certs
 matchbox_hostname: matchbox.example.com
+
+# Directory to store generated client certs (client.crt, client.key, ca.crt)
 matchbox_client_cert_location: "{{ ansible_env.HOME }}/.matchbox/"
