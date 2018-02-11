@@ -5,4 +5,4 @@ matchbox_url: "https://github.com/coreos/matchbox/releases/download/v{{ matchbox
 matchbox_src: "matchbox-v{{ matchbox_version }}-linux-amd64"
 
 # Location to symlink the binary to
-matchbox_executable_location: /usr/local/bin
+matchbox_executable_dir: /usr/local/bin
