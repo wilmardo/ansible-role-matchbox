@@ -1,8 +1,11 @@
 ---
-- name: Download Matchbox
+- name: Download Matchbox and PGP file
   get_url:
-    url: "{{ matchbox_download_url }}"
+    url: "{{ item }}"
     dest: "{{ matchbox_download_location }}"
+  with_items:
+    - matchbox_download_url
+    - matchbox_download_url | append('.asc')
 
 - name: Download CoreOS App Signing key (https://coreos.com/security/app-signing-key/)
   shell: gpg --keyserver pgp.mit.edu --recv-key 18AD5014C99EF7E3BA5F6CE950BDD3E0FC8A365E
