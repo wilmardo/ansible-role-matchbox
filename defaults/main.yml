@@ -1,0 +1,9 @@
+---
+matchbox_version: 0.7.0
+
+mmatchbox_download_location: "{{ ansible_env.HOME }}"
+matchbox_install_location: /opt/matchbox
+
+matchbox_enable_grpc: yes
+matchbox_hostname: matchbox.example.com
+matchbox_client_cert_location: "{{ ansible_env.HOME }}/.matchbox/"

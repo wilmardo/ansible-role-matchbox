@@ -1,0 +1,50 @@
+---
+- name: Set Rpc adress in systemd override.conf
+  lineinfile:
+    dest: "{{ matchbox_install_location }}/contrib/systemd/matchbox.service"
+    regexp: '^Environment="MATCHBOX_RPC_ADDRESS='
+    line: 'Environment="MATCHBOX_RPC_ADDRESS=0.0.0.0:8081"'
+
+- name: Reload systemd daemon
+  systemd:
+    daemon_reload: yes
+  notify: matchbox restart
+
+- name: Generate TLS certificates
+  shell: ./cert-gen
+  environment:
+    SAN: "DNS.1:{{ matchbox_hostname }},IP.1:{{ ansible_default_ipv4.address }}"
+  chdir: "{{ matchbox_install_location }}scripts/tls"
+  creates:
+    - ca.crt
+    - server.crt
+    - server.key
+    - client.crt
+    - client.key
+  when: matchbox_selfsigned_certs
+
+- name: Create /etc/matchbox and client_cert_location
+  file:
+    dest: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/matchbox
+    - matchbox_client_cert_location
+
+- name: Move TLS credentials to /etc/matchbox
+  copy:
+    src: "{{ matchbox_install_location }}scripts/tls/{{ item }}"
+    dest: /etc/matchbox
+  with_items:
+    - ca.crt
+    - server.crt
+    - server.key
+
+- name: Move client certs to to client_cert_location
+  copy:
+    src: "{{ matchbox_install_location }}scripts/tls/{{ item }}"
+    dest: "{{ matchbox_client_cert_location }}"
+  with_items:
+    - ca.crt
+    - client.crt
+    - client.key

@@ -1,0 +1,10 @@
+---
+- import_tasks: load-variables.yml
+
+#- include: setup-epel.yml
+
+#- include: setup-prerequisite.yml
+
+- import_tasks: install-matchbox.yml
+
+- import_tasks: install-matchbox.yml

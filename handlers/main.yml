@@ -1,0 +1,5 @@
+---
+- name: matchbox restart
+  service:
+    name: matchbox
+    state: restarted

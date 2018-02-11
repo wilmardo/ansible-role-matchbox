@@ -1,0 +1,29 @@
+---
+- name: Download Matchbox
+  get_url:
+    url: "{{ matchbox_download_url }}"
+    dest: "{{ matchbox_download_location }}"
+
+- name: Download CoreOS App Signing key (https://coreos.com/security/app-signing-key/)
+  shell: gpg --keyserver pgp.mit.edu --recv-key 18AD5014C99EF7E3BA5F6CE950BDD3E0FC8A365E
+
+- name: Verify Matchbox
+  shell: "gpg --verify matchbox-v{{ matchbox-version }}-linux-amd64.tar.gz.asc matchbox-v{{ matchbox-version }}-linux-amd64.tar.gz"
+
+- name: Unpack release tarball
+  unarchive:
+    src: "{{ matchbox_download_location }}"
+    dest: "{{ matchbox_install_location }}"
+    remote_src: yes
+
+- name: Symlink Matchbox executable
+  file:
+    src: "{{ matchbox_install_location }}/matchbox"
+    dest: "{{ matchbox_executable_location }}"
+
+- name: Enable Matchbox and reload daemon
+  systemd:
+    name: matchbox
+    enabled: yes
+    daemon_reload: yes
+  notify: matchbox restart

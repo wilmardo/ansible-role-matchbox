@@ -1,0 +1,17 @@
+---
+- name: Create Matchbox group
+  group:
+    name: matchbox
+    state: present
+
+- name: Create Matchbox user
+  user:
+    name: matchbox
+    group: matchbox
+    state: present
+
+- name: Setup assets directory
+  file:
+    path: /var/lib/matchbox/assets
+    owner: matchbox
+    group: matchbox
