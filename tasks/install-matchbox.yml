@@ -37,12 +37,13 @@
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/contrib/systemd/matchbox.service"
     dest: /etc/systemd/system/matchbox.service
 
-- name:
+- name: Create systemd override.conf
   blockinfile:
     dest: /etc/systemd/system/matchbox.service.d/override.conf
     block: "{{ matchbox_systemd_override }}"
     marker: "<!-- {mark} ANSIBLE MANAGED CONFIG -->"
     insertafter: EOF
+    create: yes
 
 - name: Set ExexStart in systemd override.conf
   lineinfile:
