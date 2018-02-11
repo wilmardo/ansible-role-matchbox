@@ -13,15 +13,16 @@
 
 - name: Generate TLS certificates
   shell: ./cert-gen
+  args:
+    chdir: "{{ matchbox_download_dir }}/{{ matchbox_src }}scripts/tls"
+    creates:
+      - ca.crt
+      - server.crt
+      - server.key
+      - client.crt
+      - client.key
   environment:
     SAN: "DNS.1:{{ matchbox_hostname }},IP.1:{{ ansible_default_ipv4.address }}"
-  chdir: "{{ matchbox_download_dir }}/{{ matchbox_src }}scripts/tls"
-  creates:
-    - ca.crt
-    - server.crt
-    - server.key
-    - client.crt
-    - client.key
   when: matchbox_selfsigned_certs
 
 - name: Create /etc/matchbox and client_cert_dir
@@ -32,7 +33,6 @@
     - /etc/matchbox
     - "{{ matchbox_client_cert_dir }}"
   become: yes
-
 
 - name: Move TLS credentials to /etc/matchbox
   copy:
