@@ -37,7 +37,7 @@
 
 - name: Move TLS credentials to /etc/matchbox
   copy:
-    src: "{{ matchbox_download_dir }}/{{ matchbox_src }}scripts/tls/{{ item }}"
+    src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/tls/{{ item }}"
     dest: /etc/matchbox
   with_items:
     - ca.crt
@@ -47,7 +47,7 @@
 
 - name: Move client certs to to client_cert_dir
   copy:
-    src: "{{ matchbox_download_dir }}/{{ matchbox_src }}scripts/tls/{{ item }}"
+    src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/tls/{{ item }}"
     dest: "{{ matchbox_client_cert_dir }}"
   with_items:
     - ca.crt
