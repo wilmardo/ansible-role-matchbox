@@ -38,8 +38,6 @@
   copy:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/contrib/systemd/matchbox.service"
     dest: /etc/systemd/system/matchbox.service
-    owner: root
-    group: root
   become: yes
 
 - name: Create systemd override directory
