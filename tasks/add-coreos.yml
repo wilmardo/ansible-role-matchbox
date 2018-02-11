@@ -9,3 +9,4 @@
   copy:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/coreos"
     dest: /var/lib/matchbox/assets
+    remote_src: yes
