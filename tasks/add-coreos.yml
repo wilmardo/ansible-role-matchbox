@@ -3,8 +3,9 @@
   shell: "./get-coreos stable {{ matchbox_coreos_version }} ."
   args:
     chdir: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts"
+    creates: "./coreos/{{ matchbox_coreos_version }}/"
 
 - name: Move to assets folder
   copy:
-    src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/coreos"
+    src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/coreos"
     dest: /var/lib/matchbox/assets
