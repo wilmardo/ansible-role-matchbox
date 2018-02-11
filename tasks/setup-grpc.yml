@@ -9,6 +9,7 @@
   systemd:
     daemon_reload: yes
   notify: matchbox restart
+  become: yes
 
 - name: Generate TLS certificates
   shell: ./cert-gen
@@ -30,6 +31,8 @@
   with_items:
     - /etc/matchbox
     - "{{ matchbox_client_cert_dir }}"
+  become: yes
+
 
 - name: Move TLS credentials to /etc/matchbox
   copy:
@@ -39,6 +42,7 @@
     - ca.crt
     - server.crt
     - server.key
+  become: yes
 
 - name: Move client certs to to client_cert_dir
   copy:
