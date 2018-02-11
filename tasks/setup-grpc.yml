@@ -14,7 +14,7 @@
 - name: Generate TLS certificates
   shell: ./cert-gen
   args:
-    chdir: "{{ matchbox_download_dir }}/{{ matchbox_src }}scripts/tls"
+    chdir: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/tls"
     creates:
       - ca.crt
       - server.crt
