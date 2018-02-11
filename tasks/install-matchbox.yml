@@ -4,8 +4,8 @@
     path: "{{ item }}"
     state: directory
   with_items:
-    - matchbox_download_location
-    - matchbox_install_location
+    - "{{ matchbox_download_location }}"
+    - "{{ matchbox_install_location }}"
 
 - name: Download Matchbox and PGP file
   get_url:
