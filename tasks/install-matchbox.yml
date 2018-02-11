@@ -1,8 +1,13 @@
 ---
+- name: Ensure download dir exists
+  file:
+    path: "{{ matchbox_download_location }}"
+    state: directory
+
 - name: Download Matchbox and PGP file
   get_url:
     url: "{{ item }}"
-    dest: "{{ matchbox_download_location }}"
+    dest: "{{ matchbox_download_location }}/"
   with_items:
     - "{{ matchbox_download_url }}"
     - "{{ matchbox_download_url + '.asc' }}"
