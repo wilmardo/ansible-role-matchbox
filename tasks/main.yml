@@ -1,6 +1,8 @@
 ---
 - import_tasks: load-variables.yml
 
+- import_tasks: add-users.yml
+
 - import_tasks: install-matchbox.yml
 
 - import_tasks: setup-prerequisite.yml
