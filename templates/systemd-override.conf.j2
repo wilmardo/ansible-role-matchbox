@@ -2,4 +2,7 @@
 [Service]
 ExecStart=
 ExecStart={{ matchbox_executable_dir }}
+{% if matchbox_enable_grpc %}
+Environment="MATCHBOX_RPC_ADDRESS=0.0.0.0:8081"
+{% endif %}
 {{ matchbox_systemd_override }}
