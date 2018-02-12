@@ -13,7 +13,7 @@
 
 - name: Set correct permissions on assets folder
   file:
-    path: "{ matchbox_assets_dir }}/coreos/"
+    path: "{{ matchbox_assets_dir }}/coreos/"
     state: directory
     owner: matchbox
     group: matchbox

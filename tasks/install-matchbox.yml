@@ -58,7 +58,7 @@
 
 - name: Create assets folder
   file:
-    path: "{ matchbox_assets_dir }}"
+    path: "{{ matchbox_assets_dir }}"
     state: directory
     owner: matchbox
     group: matchbox
