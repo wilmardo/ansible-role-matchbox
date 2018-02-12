@@ -28,11 +28,10 @@
     dest: "{{ matchbox_download_dir }}"
     remote_src: yes
 
-- name: Symlink Matchbox executable
-  file:
+- name: Copy pre-built Matchbox executable
+  copy:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/matchbox"
     dest: "{{ matchbox_executable_dir }}/matchbox"
-    state: link
   become: yes
 
 - name: Copy Matchbox systemd file
