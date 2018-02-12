@@ -32,6 +32,7 @@
   file:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/matchbox"
     dest: "{{ matchbox_executable_dir }}/matchbox"
+    state: link
   become: yes
 
 - name: Copy Matchbox systemd file
