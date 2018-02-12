@@ -7,3 +7,11 @@
 
 - name: Move to assets folder
   command: "cp -r {{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/coreos/ /var/lib/matchbox/assets/"
+
+- name: Set correct permissions on assets folder
+  file:
+    path: /var/lib/matchbox/assets/
+    state: directory
+    owner: matchbox
+    group: matchbox
+    recurse: yes
