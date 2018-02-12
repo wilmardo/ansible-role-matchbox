@@ -6,12 +6,12 @@
     creates: "./coreos/{{ matchbox_coreos_version }}/"
 
 - name: Move to assets folder
-  command: "cp -r {{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/coreos/ /var/lib/matchbox/assets/"
+  command: "cp -r {{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/coreos/ {{ matchbox_assets_dir }}/"
   become: yes
 
 - name: Set correct permissions on assets folder
   file:
-    path: /var/lib/matchbox/assets/
+    path: "{ matchbox_assets_dir }}/coreos/"
     state: directory
     owner: matchbox
     group: matchbox

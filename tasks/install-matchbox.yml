@@ -48,19 +48,17 @@
   become: yes
 
 - name: Create systemd override.conf
-  blockinfile:
+  template:
+    src: templates/systemd-override.conf.j2
     dest: /etc/systemd/system/matchbox.service.d/override.conf
-    block: "{{ matchbox_systemd_override }}"
-    marker: "<!-- {mark} ANSIBLE MANAGED CONFIG -->"
-    insertafter: EOF
-    create: yes
   become: yes
 
-- name: Set ExexStart in systemd override.conf
-  lineinfile:
-    dest: /etc/systemd/system/matchbox.service.d/override.conf
-    regexp: "^ExecStart="
-    line: "ExecStart={{ matchbox_executable_dir }}"
+- name: Create assets folder
+  file:
+    path: "{ matchbox_assets_dir }}"
+    state: directory
+    owner: matchbox
+    group: matchbox
   become: yes
 
 - name: Enable Matchbox and reload daemon

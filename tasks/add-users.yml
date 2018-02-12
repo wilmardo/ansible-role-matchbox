@@ -14,7 +14,7 @@
 
 - name: Setup assets directory
   file:
-    path: /var/lib/matchbox/assets
+    path: "{ matchbox_assets_dir }}"
     owner: matchbox
     group: matchbox
     state: directory
