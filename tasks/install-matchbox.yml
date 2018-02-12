@@ -32,6 +32,7 @@
   copy:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/matchbox"
     dest: "{{ matchbox_executable_dir }}/matchbox"
+    mode: 0755
     remote_src: yes
   become: yes
 
