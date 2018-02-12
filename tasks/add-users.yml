@@ -3,12 +3,14 @@
   group:
     name: matchbox
     state: present
+  become: yes
 
 - name: Create Matchbox user
   user:
     name: matchbox
     group: matchbox
     state: present
+  become: yes
 
 - name: Setup assets directory
   file:
@@ -16,3 +18,4 @@
     owner: matchbox
     group: matchbox
     state: directory
+  become: yes
