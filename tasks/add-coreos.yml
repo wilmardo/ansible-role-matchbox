@@ -7,6 +7,8 @@
 
 - name: Move to assets folder
   command: "cp -r {{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/coreos/ {{ matchbox_assets_dir }}/"
+  args:
+    creates: "{{ matchbox_assets_dir }}/coreos"
   become: yes
 
 - name: Set correct permissions on assets folder
