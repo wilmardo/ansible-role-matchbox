@@ -4,6 +4,7 @@
   args:
     chdir: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts"
     creates: "./coreos/{{ matchbox_coreos_version }}/"
+  register: matchbox_coreos_download
 
 - name: Move to assets folder
   command: "cp -r {{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/coreos/ {{ matchbox_assets_dir }}/"
@@ -19,3 +20,22 @@
     group: matchbox
     recurse: yes
   become: yes
+
+- block:
+
+  - name: Delete previous CoreOS versions
+    find:
+      paths:
+        - "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/coreos/"
+        - "{{ matchbox_assets_dir }}/coreos/"
+      file_type: directory
+    register: matchbox_existing
+
+  - name: Delete unwanted files
+    file:
+      path: "{{ item.path }}"
+      state: absent
+    when: "{{ item.path|basename }} != {{ matchbox_coreos_version }}"
+    with_items: "{{ matchbox_existing.files | default([]) }}"
+
+  when: matchbox_coreos_download.changed
