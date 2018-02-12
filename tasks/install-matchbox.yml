@@ -31,7 +31,7 @@
 - name: Symlink Matchbox executable
   file:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/matchbox"
-    dest: "{{ matchbox_executable_dir }}"
+    dest: "{{ matchbox_executable_dir }}/matchbox"
   become: yes
 
 - name: Copy Matchbox systemd file

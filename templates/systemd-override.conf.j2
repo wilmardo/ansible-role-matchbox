@@ -1,7 +1,7 @@
 <!-- ANSIBLE MANAGED CONFIG -->
 [Service]
 ExecStart=
-ExecStart={{ matchbox_executable_dir }}
+ExecStart={{ matchbox_executable_dir }}/matchbox
 {% if matchbox_enable_grpc %}
 Environment="MATCHBOX_RPC_ADDRESS=0.0.0.0:8081"
 {% endif %}
