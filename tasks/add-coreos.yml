@@ -6,7 +6,4 @@
     creates: "./coreos/{{ matchbox_coreos_version }}/"
 
 - name: Move to assets folder
-  copy:
-    src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/coreos/{{ matchbox_coreos_version }}"
-    dest: /var/lib/matchbox/assets/coreos/
-    remote_src: yes
+  command: "cp -r {{ matchbox_download_dir }}/{{ matchbox_src }}/scripts/coreos/{{ matchbox_coreos_version }} /var/lib/matchbox/assets/coreos/"
