@@ -42,6 +42,7 @@
     dest: /etc/systemd/system/matchbox.service
     remote_src: yes
   become: yes
+  notify: matchbox restart
 
 - name: Create systemd override directory
   file:
