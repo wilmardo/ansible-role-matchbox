@@ -32,6 +32,7 @@
   copy:
     src: "{{ matchbox_download_dir }}/{{ matchbox_src }}/matchbox"
     dest: "{{ matchbox_executable_dir }}/matchbox"
+    remote_src: yes
   become: yes
 
 - name: Copy Matchbox systemd file
