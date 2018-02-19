@@ -11,23 +11,24 @@ galaxy_info:
   - name: EL
     versions:
       - 7
-#      - 6
-#
-#  - name: Ubuntu
-#    versions:
-#    - precise
-#    - trusty
-#    - xenial
-#
-#  - name: Debian
-#    versions:
-#    - wheezy
-#    - jessie
-#    - stretch
+      - 6
+
+  - name: Ubuntu
+    versions:
+    - precise
+    - trusty
+    - xenial
+
+  - name: Debian
+    versions:
+    - wheezy
+    - jessie
+    - stretch
 
   galaxy_tags:
     - matchbox
     - coreos
     - pxe
+    - tectonic
 
 dependencies: []

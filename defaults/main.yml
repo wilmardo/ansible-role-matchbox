@@ -20,4 +20,5 @@ matchbox_client_cert_dir: "{{ ansible_env.HOME }}/.matchbox"
 # Enable to setup to serve CoreOS PXE boot
 matchbox_enable_coreos_pxe: no
 # Release number to download
-matchbox_coreos_version: 1632.3.0
+matchbox_coreos_versions:
+  - 1632.3.0
